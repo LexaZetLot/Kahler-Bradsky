@@ -7,7 +7,7 @@
 using namespace cv;
 using namespace std;
 
-int main(int argc, const char** argv)
+int main(void)
 {
     cv::Mat src1 = cv::imread(argv[1], 1);
     cv::Mat src2 = cv::imread(argv[2], 1);
