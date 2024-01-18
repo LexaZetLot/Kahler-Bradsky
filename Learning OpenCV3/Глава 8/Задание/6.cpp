@@ -7,6 +7,7 @@ unsigned char flag_mouse = 0;
 
 void CallBackFunc(int event, int x, int y, int flags, void* userdata);
 
+
 int main(void)
 {
 	char ch;

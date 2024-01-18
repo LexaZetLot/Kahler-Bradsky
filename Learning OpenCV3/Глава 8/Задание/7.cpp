@@ -52,6 +52,28 @@ int main(void)
 			size = (int)ch - 48;
 			ch = 0;
 		}
+		if (ch == 'z')
+		{
+			vec_point_f_ot.clear();
+			vec_point_f_ot.push_back(cv::Point2f(0, 0));
+			vec_point_f_ot.push_back(cv::Point2f(sqrt(pow(abs(vec_point_f_in[0].x - vec_point_f_in[2].x), 2) + pow(abs(vec_point_f_in[0].y - vec_point_f_in[2].y), 2)) * size, 0));
+			vec_point_f_ot.push_back(cv::Point2f(0, sqrt(pow(abs(vec_point_f_in[0].x - vec_point_f_in[1].x), 2) + pow(abs(vec_point_f_in[0].y - vec_point_f_in[1].y), 2)) * size));
+			vec_point_f_ot.push_back(cv::Point2f(sqrt(pow(abs(vec_point_f_in[0].x - vec_point_f_in[2].x), 2) + pow(abs(vec_point_f_in[0].y - vec_point_f_in[2].y), 2)) * size, sqrt(pow(abs(vec_point_f_in[0].x - vec_point_f_in[1].x), 2) + pow(abs(vec_point_f_in[0].y - vec_point_f_in[1].y), 2)) * size));
+			M = cv::getPerspectiveTransform(vec_point_f_in.data(), vec_point_f_ot.data());
+			cv::warpPerspective(mat_in, mat_ot, M, cv::Size(sqrt(pow(abs(vec_point_f_in[0].x - vec_point_f_in[2].x), 2) + pow(abs(vec_point_f_in[0].y - vec_point_f_in[2].y), 2)) * size, sqrt(pow(abs(vec_point_f_in[0].x - vec_point_f_in[1].x), 2) + pow(abs(vec_point_f_in[0].y - vec_point_f_in[1].y), 2)) * size));
+			cv::imshow("2", mat_ot);
+		}
+		else if (ch == 'x')
+		{
+			vec_point_f_ot.clear();
+			vec_point_f_ot.push_back(cv::Point2f(0, 0));
+			vec_point_f_ot.push_back(cv::Point2f(0, sqrt(pow(abs(vec_point_f_in[0].x - vec_point_f_in[1].x), 2) + pow(abs(vec_point_f_in[0].y - vec_point_f_in[1].y), 2)) * size));
+			vec_point_f_ot.push_back(cv::Point2f(sqrt(pow(abs(vec_point_f_in[0].x - vec_point_f_in[2].x), 2) + pow(abs(vec_point_f_in[0].y - vec_point_f_in[2].y), 2)) * size, 0));
+			vec_point_f_ot.push_back(cv::Point2f(sqrt(pow(abs(vec_point_f_in[0].x - vec_point_f_in[2].x), 2) + pow(abs(vec_point_f_in[0].y - vec_point_f_in[2].y), 2)) * size, sqrt(pow(abs(vec_point_f_in[0].x - vec_point_f_in[1].x), 2) + pow(abs(vec_point_f_in[0].y - vec_point_f_in[1].y), 2)) * size));
+			M = cv::getPerspectiveTransform(vec_point_f_in.data(), vec_point_f_ot.data());
+			cv::warpPerspective(mat_in, mat_ot, M, cv::Size(sqrt(pow(abs(vec_point_f_in[0].x - vec_point_f_in[2].x), 2) + pow(abs(vec_point_f_in[0].y - vec_point_f_in[2].y), 2)) * size, sqrt(pow(abs(vec_point_f_in[0].x - vec_point_f_in[1].x), 2) + pow(abs(vec_point_f_in[0].y - vec_point_f_in[1].y), 2)) * size));
+			cv::imshow("2", mat_ot);
+		}
 	}
 
 	return 0;
